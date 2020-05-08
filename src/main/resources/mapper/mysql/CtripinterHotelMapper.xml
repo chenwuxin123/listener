@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meipiao.ctrip_applepie.listener.dao.mysql.CtripinterHotelDao">
+
+    <resultMap type="com.meipiao.ctrip_applepie.listener.entity.mysql.CtripinterHotel" id="CtripinterHotelMap">
+        <id property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="hotelCode" column="HOTEL_CODE" jdbcType="VARCHAR"/>
+        <result property="hotelCategory" column="HOTEL_CATEGORY" jdbcType="VARCHAR"/>
+        <result property="latitude" column="LATITUDE" jdbcType="VARCHAR"/>
+        <result property="longitude" column="LONGITUDE" jdbcType="VARCHAR"/>
+        <result property="hotelStatus" column="HOTEL_STATUS" jdbcType="VARCHAR"/>
+        <result property="ctripHotelCode" column="CTRIP_HOTEL_CODE" jdbcType="VARCHAR"/>
+        <result property="masterHotelNum" column="MASTER_HOTEL_NUM" jdbcType="VARCHAR"/>
+        <result property="accountId" column="ACCOUNT_ID" jdbcType="VARCHAR"/>
+        <result property="isPush" column="IS_PUSH" jdbcType="INTEGER"/>
+        <result property="pushStatus" column="PUSH_STATUS" jdbcType="INTEGER"/>
+        <result property="errors" column="ERRORS" jdbcType="VARCHAR"/>
+        <result property="idx" column="IDX" jdbcType="VARCHAR"/>
+        <result property="regId" column="REG_ID" jdbcType="VARCHAR"/>
+        <result property="regIp" column="REG_IP" jdbcType="VARCHAR"/>
+        <result property="regClientId" column="REG_CLIENT_ID" jdbcType="VARCHAR"/>
+        <result property="regTime" column="REG_TIME" jdbcType="TIMESTAMP"/>
+        <result property="uptId" column="UPT_ID" jdbcType="INTEGER"/>
+        <result property="uptIp" column="UPT_IP" jdbcType="VARCHAR"/>
+        <result property="uptClientId" column="UPT_CLIENT_ID" jdbcType="VARCHAR"/>
+        <result property="uptTime" column="UPT_TIME" jdbcType="TIMESTAMP"/>
+        <result property="dataStatus" column="DATA_STATUS" jdbcType="INTEGER"/>
+        <result property="isShow" column="IS_SHOW" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CtripinterHotelMap">
+        select
+        ID, HOTEL_CODE, HOTEL_CATEGORY, LATITUDE, LONGITUDE, HOTEL_STATUS, CTRIP_HOTEL_CODE, MASTER_HOTEL_NUM,
+        ACCOUNT_ID, IS_PUSH, PUSH_STATUS, ERRORS, IDX, REG_ID, REG_IP, REG_CLIENT_ID, REG_TIME, UPT_ID, UPT_IP,
+        UPT_CLIENT_ID, UPT_TIME, DATA_STATUS, IS_SHOW
+        from ctripinter_hotel
+        where ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CtripinterHotelMap">
+        select
+        ID, HOTEL_CODE, HOTEL_CATEGORY, LATITUDE, LONGITUDE, HOTEL_STATUS, CTRIP_HOTEL_CODE, MASTER_HOTEL_NUM,
+        ACCOUNT_ID, IS_PUSH, PUSH_STATUS, ERRORS, IDX, REG_ID, REG_IP, REG_CLIENT_ID, REG_TIME, UPT_ID, UPT_IP,
+        UPT_CLIENT_ID, UPT_TIME, DATA_STATUS, IS_SHOW
+        from ctripinter_hotel
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="CtripinterHotelMap">
+        select
+        ID, HOTEL_CODE, HOTEL_CATEGORY, LATITUDE, LONGITUDE, HOTEL_STATUS, CTRIP_HOTEL_CODE, MASTER_HOTEL_NUM,
+        ACCOUNT_ID, IS_PUSH, PUSH_STATUS, ERRORS, IDX, REG_ID, REG_IP, REG_CLIENT_ID, REG_TIME, UPT_ID, UPT_IP,
+        UPT_CLIENT_ID, UPT_TIME, DATA_STATUS, IS_SHOW
+        from ctripinter_hotel
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="hotelCode != null and hotelCode != ''">
+                and HOTEL_CODE = #{hotelCode}
+            </if>
+            <if test="hotelCategory != null and hotelCategory != ''">
+                and HOTEL_CATEGORY = #{hotelCategory}
+            </if>
+            <if test="latitude != null and latitude != ''">
+                and LATITUDE = #{latitude}
+            </if>
+            <if test="longitude != null and longitude != ''">
+                and LONGITUDE = #{longitude}
+            </if>
+            <if test="hotelStatus != null and hotelStatus != ''">
+                and HOTEL_STATUS = #{hotelStatus}
+            </if>
+            <if test="ctripHotelCode != null and ctripHotelCode != ''">
+                and CTRIP_HOTEL_CODE = #{ctripHotelCode}
+            </if>
+            <if test="masterHotelNum != null and masterHotelNum != ''">
+                and MASTER_HOTEL_NUM = #{masterHotelNum}
+            </if>
+            <if test="accountId != null and accountId != ''">
+                and ACCOUNT_ID = #{accountId}
+            </if>
+            <if test="isPush != null">
+                and IS_PUSH = #{isPush}
+            </if>
+            <if test="pushStatus != null">
+                and PUSH_STATUS = #{pushStatus}
+            </if>
+            <if test="errors != null and errors != ''">
+                and ERRORS = #{errors}
+            </if>
+            <if test="idx != null and idx != ''">
+                and IDX = #{idx}
+            </if>
+            <if test="regId != null and regId != ''">
+                and REG_ID = #{regId}
+            </if>
+            <if test="regIp != null and regIp != ''">
+                and REG_IP = #{regIp}
+            </if>
+            <if test="regClientId != null and regClientId != ''">
+                and REG_CLIENT_ID = #{regClientId}
+            </if>
+            <if test="regTime != null">
+                and REG_TIME = #{regTime}
+            </if>
+            <if test="uptId != null">
+                and UPT_ID = #{uptId}
+            </if>
+            <if test="uptIp != null and uptIp != ''">
+                and UPT_IP = #{uptIp}
+            </if>
+            <if test="uptClientId != null and uptClientId != ''">
+                and UPT_CLIENT_ID = #{uptClientId}
+            </if>
+            <if test="uptTime != null">
+                and UPT_TIME = #{uptTime}
+            </if>
+            <if test="dataStatus != null">
+                and DATA_STATUS = #{dataStatus}
+            </if>
+            <if test="isShow != null">
+                and IS_SHOW = #{isShow}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ctripinter_hotel(HOTEL_CODE, HOTEL_CATEGORY, LATITUDE, LONGITUDE, HOTEL_STATUS, CTRIP_HOTEL_CODE,
+        MASTER_HOTEL_NUM, ACCOUNT_ID, IS_PUSH, PUSH_STATUS, ERRORS, IDX, REG_ID, REG_IP, REG_CLIENT_ID, REG_TIME,
+        UPT_ID, UPT_IP, UPT_CLIENT_ID, UPT_TIME, DATA_STATUS, IS_SHOW)
+        values (#{hotelCode}, #{hotelCategory}, #{latitude}, #{longitude}, #{hotelStatus}, #{ctripHotelCode},
+        #{masterHotelNum}, #{accountId}, #{isPush}, #{pushStatus}, #{errors}, #{idx}, #{regId}, #{regIp},
+        #{regClientId}, #{regTime}, #{uptId}, #{uptIp}, #{uptClientId}, #{uptTime}, #{dataStatus}, #{isShow})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ctripinter_hotel
+        <set>
+            <if test="hotelCode != null and hotelCode != ''">
+                HOTEL_CODE = #{hotelCode},
+            </if>
+            <if test="hotelCategory != null and hotelCategory != ''">
+                HOTEL_CATEGORY = #{hotelCategory},
+            </if>
+            <if test="latitude != null and latitude != ''">
+                LATITUDE = #{latitude},
+            </if>
+            <if test="longitude != null and longitude != ''">
+                LONGITUDE = #{longitude},
+            </if>
+            <if test="hotelStatus != null and hotelStatus != ''">
+                HOTEL_STATUS = #{hotelStatus},
+            </if>
+            <if test="ctripHotelCode != null and ctripHotelCode != ''">
+                CTRIP_HOTEL_CODE = #{ctripHotelCode},
+            </if>
+            <if test="masterHotelNum != null and masterHotelNum != ''">
+                MASTER_HOTEL_NUM = #{masterHotelNum},
+            </if>
+            <if test="accountId != null and accountId != ''">
+                ACCOUNT_ID = #{accountId},
+            </if>
+            <if test="isPush != null">
+                IS_PUSH = #{isPush},
+            </if>
+            <if test="pushStatus != null">
+                PUSH_STATUS = #{pushStatus},
+            </if>
+            <if test="errors != null and errors != ''">
+                ERRORS = #{errors},
+            </if>
+            <if test="idx != null and idx != ''">
+                IDX = #{idx},
+            </if>
+            <if test="regId != null and regId != ''">
+                REG_ID = #{regId},
+            </if>
+            <if test="regIp != null and regIp != ''">
+                REG_IP = #{regIp},
+            </if>
+            <if test="regClientId != null and regClientId != ''">
+                REG_CLIENT_ID = #{regClientId},
+            </if>
+            <if test="regTime != null">
+                REG_TIME = #{regTime},
+            </if>
+            <if test="uptId != null">
+                UPT_ID = #{uptId},
+            </if>
+            <if test="uptIp != null and uptIp != ''">
+                UPT_IP = #{uptIp},
+            </if>
+            <if test="uptClientId != null and uptClientId != ''">
+                UPT_CLIENT_ID = #{uptClientId},
+            </if>
+            <if test="uptTime != null">
+                UPT_TIME = #{uptTime},
+            </if>
+            <if test="dataStatus != null">
+                DATA_STATUS = #{dataStatus},
+            </if>
+            <if test="isShow != null">
+                IS_SHOW = #{isShow},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ctripinter_hotel where ID = #{id}
+    </delete>
+
+</mapper>

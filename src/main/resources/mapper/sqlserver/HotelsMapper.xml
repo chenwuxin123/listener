@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meipiao.ctrip_applepie.listener.dao.sqlserver.HotelsDao">
+
+    <resultMap type="com.meipiao.ctrip_applepie.listener.entity.sqlserver.Hotels" id="Hotels">
+        <id property="id" column="Id" jdbcType="BIGINT"/>
+        <result property="hotelStar" column="HotelStar" jdbcType="INTEGER"/>
+        <result property="starLicence" column="StarLicence" jdbcType="INTEGER"/>
+        <result property="hotelTel" column="HotelTel" jdbcType="VARCHAR"/>
+        <result property="lat" column="Lat" jdbcType="VARCHAR"/>
+        <result property="lon" column="Lon" jdbcType="VARCHAR"/>
+        <result property="googleLat" column="GoogleLat" jdbcType="VARCHAR"/>
+        <result property="googleLon" column="GoogleLon" jdbcType="VARCHAR"/>
+        <result property="baiduLat" column="BaiduLat" jdbcType="VARCHAR"/>
+        <result property="baiduLon" column="BaiduLon" jdbcType="VARCHAR"/>
+        <result property="gdLat" column="GdLat" jdbcType="VARCHAR"/>
+        <result property="gdLon" column="GdLon" jdbcType="VARCHAR"/>
+        <result property="status" column="Status" jdbcType="INTEGER"/>
+        <result property="postalCode" column="PostalCode" jdbcType="VARCHAR"/>
+        <result property="whenBuilt" column="WhenBuilt" jdbcType="VARCHAR"/>
+        <result property="renovationCompletionDate" column="RenovationCompletionDate" jdbcType="VARCHAR"/>
+        <result property="hotelPhone" column="HotelPhone" jdbcType="VARCHAR"/>
+        <result property="hotelEmail" column="HotelEmail" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询全部-->
+    <select id="queryAll" resultMap="Hotels">
+        select * from Hotels
+    </select>
+
+</mapper>

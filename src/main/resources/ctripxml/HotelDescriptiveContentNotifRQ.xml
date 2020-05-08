@@ -1,0 +1,61 @@
+<!--酒店生成和内容更新界面-->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:ns="http://www.opentravel.org/OTA/2003/05">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <OTA_HotelDescriptiveContentNotifRQ TimeStamp="2016-02-13T09:30:47Z" Target="Production" Version="2.2"
+                                            PrimaryLangID="zh-cn">
+            <POS>
+                <Source>
+                    <RequestorID Type="1"
+                    ${ID} ${MessagePassword}>
+                    <CompanyName Code="C"
+                    ${CodeContext}/>
+                </RequestorID>
+            </Source>
+        </POS>
+
+        <HotelDescriptiveContents
+        ${HotelCode} >
+        <HotelDescriptiveContent>
+            <HotelInfo
+            ${HotelStatus} >
+            <Descriptions>
+                <MultimediaDescriptions>
+                    <MultimediaDescription>
+
+                        <TextItems>
+                            ${TextItem-array-start}
+                            <ns:TextItem TextItem-array{Title} TextItem-array{Language}/>
+                            ${TextItem-array-end}
+                        </TextItems>
+
+                    </MultimediaDescription>
+                </MultimediaDescriptions>
+            </Descriptions>
+            <Position
+            ${Longitude} ${Latitude} />
+        </HotelInfo>
+        <ContactInfos>
+            <ContactInfo>
+
+                <Addresses
+                ${Visible}>
+                ${Address-array-start}
+                <Address Address-array{Language}>
+                <CountryName Address-array{Code}>Address-array{CountryName-notag}
+            </CountryName>
+            <CityName>Address-array{CityName-notag}</CityName>
+            <AddressLine>Address-array{AddressLine-notag}</AddressLine>
+            <PostalCode>Address-array{PostalCode-notag}</PostalCode>
+        </Address>
+        ${Address-array-end}
+    </Addresses>
+
+</ContactInfo>
+        </ContactInfos>
+        </HotelDescriptiveContent>
+        </HotelDescriptiveContents>
+        </OTA_HotelDescriptiveContentNotifRQ>
+        </soapenv:Body>
+        </soapenv:Envelope>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meipiao.ctrip_applepie.listener.dao.mysql.CtripinterHotelAddressDao">
+
+    <resultMap type="com.meipiao.ctrip_applepie.listener.entity.mysql.CtripinterHotelAddress"
+               id="CtripinterHotelAddressMap">
+        <id property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="ctripinterHotelId" column="CTRIPINTER_HOTEL_ID" jdbcType="INTEGER"/>
+        <result property="language" column="LANGUAGE" jdbcType="VARCHAR"/>
+        <result property="country" column="COUNTRY" jdbcType="VARCHAR"/>
+        <result property="city" column="CITY" jdbcType="VARCHAR"/>
+        <result property="addressLine" column="ADDRESS_LINE" jdbcType="VARCHAR"/>
+        <result property="postalCode" column="POSTAL_CODE" jdbcType="VARCHAR"/>
+        <result property="code" column="CODE" jdbcType="VARCHAR"/>
+        <result property="idx" column="IDX" jdbcType="VARCHAR"/>
+        <result property="regId" column="REG_ID" jdbcType="VARCHAR"/>
+        <result property="regIp" column="REG_IP" jdbcType="VARCHAR"/>
+        <result property="regClientId" column="REG_CLIENT_ID" jdbcType="VARCHAR"/>
+        <result property="regTime" column="REG_TIME" jdbcType="TIMESTAMP"/>
+        <result property="uptId" column="UPT_ID" jdbcType="INTEGER"/>
+        <result property="uptIp" column="UPT_IP" jdbcType="VARCHAR"/>
+        <result property="uptClientId" column="UPT_CLIENT_ID" jdbcType="VARCHAR"/>
+        <result property="uptTime" column="UPT_TIME" jdbcType="TIMESTAMP"/>
+        <result property="dataStatus" column="DATA_STATUS" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CtripinterHotelAddressMap">
+        select
+        ID, CTRIPINTER_HOTEL_ID, LANGUAGE, COUNTRY, CITY, ADDRESS_LINE, POSTAL_CODE, CODE, IDX, REG_ID, REG_IP,
+        REG_CLIENT_ID, REG_TIME, UPT_ID, UPT_IP, UPT_CLIENT_ID, UPT_TIME, DATA_STATUS
+        from ctripinter_hotel_address
+        where CTRIPINTER_HOTEL_ID = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CtripinterHotelAddressMap">
+        select
+        ID, CTRIPINTER_HOTEL_ID, LANGUAGE, COUNTRY, CITY, ADDRESS_LINE, POSTAL_CODE, CODE, IDX, REG_ID, REG_IP,
+        REG_CLIENT_ID, REG_TIME, UPT_ID, UPT_IP, UPT_CLIENT_ID, UPT_TIME, DATA_STATUS
+        from ctripinter_hotel_address
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="CtripinterHotelAddressMap">
+        select
+        ID, CTRIPINTER_HOTEL_ID, LANGUAGE, COUNTRY, CITY, ADDRESS_LINE, POSTAL_CODE, CODE, IDX, REG_ID, REG_IP,
+        REG_CLIENT_ID, REG_TIME, UPT_ID, UPT_IP, UPT_CLIENT_ID, UPT_TIME, DATA_STATUS
+        from ctripinter_hotel_address
+        <where>
+            <if test="id != null">
+                and ID = #{id}
+            </if>
+            <if test="ctripinterHotelId != null">
+                and CTRIPINTER_HOTEL_ID = #{ctripinterHotelId}
+            </if>
+            <if test="language != null and language != ''">
+                and LANGUAGE = #{language}
+            </if>
+            <if test="country != null and country != ''">
+                and COUNTRY = #{country}
+            </if>
+            <if test="city != null and city != ''">
+                and CITY = #{city}
+            </if>
+            <if test="addressLine != null and addressLine != ''">
+                and ADDRESS_LINE = #{addressLine}
+            </if>
+            <if test="postalCode != null and postalCode != ''">
+                and POSTAL_CODE = #{postalCode}
+            </if>
+            <if test="code != null and code != ''">
+                and CODE = #{code}
+            </if>
+            <if test="idx != null and idx != ''">
+                and IDX = #{idx}
+            </if>
+            <if test="regId != null and regId != ''">
+                and REG_ID = #{regId}
+            </if>
+            <if test="regIp != null and regIp != ''">
+                and REG_IP = #{regIp}
+            </if>
+            <if test="regClientId != null and regClientId != ''">
+                and REG_CLIENT_ID = #{regClientId}
+            </if>
+            <if test="regTime != null">
+                and REG_TIME = #{regTime}
+            </if>
+            <if test="uptId != null">
+                and UPT_ID = #{uptId}
+            </if>
+            <if test="uptIp != null and uptIp != ''">
+                and UPT_IP = #{uptIp}
+            </if>
+            <if test="uptClientId != null and uptClientId != ''">
+                and UPT_CLIENT_ID = #{uptClientId}
+            </if>
+            <if test="uptTime != null">
+                and UPT_TIME = #{uptTime}
+            </if>
+            <if test="dataStatus != null">
+                and DATA_STATUS = #{dataStatus}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ctripinter_hotel_address(CTRIPINTER_HOTEL_ID, LANGUAGE, COUNTRY, CITY, ADDRESS_LINE, POSTAL_CODE,
+        CODE, IDX, REG_ID, REG_IP, REG_CLIENT_ID, REG_TIME, UPT_ID, UPT_IP, UPT_CLIENT_ID, UPT_TIME, DATA_STATUS)
+        values (#{ctripinterHotelId}, #{language}, #{country}, #{city}, #{addressLine}, #{postalCode}, #{code}, #{idx},
+        #{regId}, #{regIp}, #{regClientId}, #{regTime}, #{uptId}, #{uptIp}, #{uptClientId}, #{uptTime}, #{dataStatus})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ctripinter_hotel_address
+        <set>
+            <if test="ctripinterHotelId != null">
+                CTRIPINTER_HOTEL_ID = #{ctripinterHotelId},
+            </if>
+            <if test="language != null and language != ''">
+                LANGUAGE = #{language},
+            </if>
+            <if test="country != null and country != ''">
+                COUNTRY = #{country},
+            </if>
+            <if test="city != null and city != ''">
+                CITY = #{city},
+            </if>
+            <if test="addressLine != null and addressLine != ''">
+                ADDRESS_LINE = #{addressLine},
+            </if>
+            <if test="postalCode != null and postalCode != ''">
+                POSTAL_CODE = #{postalCode},
+            </if>
+            <if test="code != null and code != ''">
+                CODE = #{code},
+            </if>
+            <if test="idx != null and idx != ''">
+                IDX = #{idx},
+            </if>
+            <if test="regId != null and regId != ''">
+                REG_ID = #{regId},
+            </if>
+            <if test="regIp != null and regIp != ''">
+                REG_IP = #{regIp},
+            </if>
+            <if test="regClientId != null and regClientId != ''">
+                REG_CLIENT_ID = #{regClientId},
+            </if>
+            <if test="regTime != null">
+                REG_TIME = #{regTime},
+            </if>
+            <if test="uptId != null">
+                UPT_ID = #{uptId},
+            </if>
+            <if test="uptIp != null and uptIp != ''">
+                UPT_IP = #{uptIp},
+            </if>
+            <if test="uptClientId != null and uptClientId != ''">
+                UPT_CLIENT_ID = #{uptClientId},
+            </if>
+            <if test="uptTime != null">
+                UPT_TIME = #{uptTime},
+            </if>
+            <if test="dataStatus != null">
+                DATA_STATUS = #{dataStatus},
+            </if>
+        </set>
+        where ID = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ctripinter_hotel_address where ID = #{id}
+    </delete>
+
+</mapper>

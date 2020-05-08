@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meipiao.ctrip_applepie.listener.dao.sqlserver.HotelCheckInPolicysSqlServerDao">
+
+    <resultMap type="com.meipiao.ctrip_applepie.listener.entity.sqlserver.HotelCheckInPolicys" id="HotelCheckInPolicys">
+        <id property="id" column="Id" jdbcType="BIGINT"/>
+        <result property="hotelId" column="HotelId" jdbcType="BIGINT"/>
+        <result property="kidsFree" column="KidsFree" jdbcType="INTEGER"/>
+        <result property="freeCutoffAge" column="FreeCutoffAge" jdbcType="INTEGER"/>
+        <result property="freeChildPerAdult" column="FreeChildPerAdult" jdbcType="BIGINT"/>
+        <result property="MinGuestAge" column="MinGuestAge" jdbcType="INTEGER"/>
+        <result property="acceptedGuestType" column="AcceptedGuestType" jdbcType="VARCHAR"/>
+        <result property="petsAllowedCode" column="PetsAllowedCode" jdbcType="VARCHAR"/>
+        <result property="petsCharge" column="PetsCharge" jdbcType="INTEGER"/>
+        <result property="checkInTime" column="CheckInTime" jdbcType="VARCHAR"/>
+        <result property="checkOutTime" column="CheckOutTime" jdbcType="VARCHAR"/>
+        <result property="petsCurrencyCode" column="PetsCurrencyCode" jdbcType="VARCHAR"/>
+        <result property="lastCheckInTime" column="LastCheckInTime" jdbcType="VARCHAR"/>
+        <result property="earlyCheckOutTime" column="EarlyCheckOutTime" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询全部-->
+    <select id="queryAll" resultMap="HotelCheckInPolicys">
+        select * from HotelCheckInPolicys
+    </select>
+
+</mapper>

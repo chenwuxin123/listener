@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.meipiao.ctrip_applepie.listener.dao.sqlserver.HotelDistributorRelationSqlServerDao">
+
+    <resultMap type="com.meipiao.ctrip_applepie.listener.entity.sqlserver.HotelDistributorRelation"
+               id="HotelDistributorRelation">
+        <id property="id" column="Id" jdbcType="BIGINT"/>
+        <id property="hotelId" column="HotelId" jdbcType="BIGINT"/>
+        <id property="distributorId" column="DistributorId" jdbcType="BIGINT"/>
+        <result property="language" column="Language" jdbcType="VARCHAR"/>
+        <result property="hotelTitle" column="HotelTitle" jdbcType="VARCHAR"/>
+        <result property="hotelTel" column="HotelTel" jdbcType="VARCHAR"/>
+        <result property="country" column="Country" jdbcType="VARCHAR"/>
+        <result property="city" column="City" jdbcType="VARCHAR"/>
+        <result property="address" column="Address" jdbcType="VARCHAR"/>
+        <result property="mappingCode" column="MappingCode" jdbcType="VARCHAR"/>
+        <result property="isOnline" column="IsOnline" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询全部-->
+    <select id="queryAll" resultMap="HotelDistributorRelation">
+        select * from HotelDistributorRelation
+    </select>
+
+</mapper>
